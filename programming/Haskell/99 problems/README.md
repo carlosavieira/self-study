@@ -71,10 +71,10 @@ True
 
 Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively).
 
-Example in Haskell:
-```haskell
-We have to define a new data type, because lists in Haskell are homogeneous.
 
+Example in Haskell:
+(We have to define a new data type, because lists in Haskell are homogeneous)
+```haskell
  data NestedList a = Elem a | List [NestedList a]
 *Main> flatten (Elem 5)
 [5]
@@ -108,10 +108,125 @@ Main> pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a',
 ##Problem 10
 (*) Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
 
-Example in Haskell:```haskell
-
+Example in Haskell:
+```haskell
 encode "aaaabccaadeeee"
 [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
+```
+
+##Problem 11
+(*) Modified run-length encoding.
+
+Modify the result of problem 10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (N E) lists.
+
+Example in Haskell:
+```haskell
+P11> encodeModified "aaaabccaadeeee"
+[Multiple 4 'a',Single 'b',Multiple 2 'c',
+ Multiple 2 'a',Single 'd',Multiple 4 'e']
+```
+
+##Problem 12
+(**) Decode a run-length encoded list.
+
+Given a run-length code list generated as specified in problem 11. Construct its uncompressed version.
+
+Example in Haskell:
+```haskell
+P12> decodeModified 
+       [Multiple 4 'a',Single 'b',Multiple 2 'c',
+        Multiple 2 'a',Single 'd',Multiple 4 'e']
+"aaaabccaadeeee"
+```
+
+##Problem 13
+(**) Run-length encoding of a list (direct solution).
+
+Implement the so-called run-length encoding data compression method directly. I.e. don't explicitly create the sublists containing the duplicates, as in problem 9, but only count them. As in problem P11, simplify the result list by replacing the singleton lists (1 X) by X.
+
+Example in Haskell:
+```haskell
+P13> encodeDirect "aaaabccaadeeee"
+[Multiple 4 'a',Single 'b',Multiple 2 'c',
+ Multiple 2 'a',Single 'd',Multiple 4 'e']
+```
+
+##Problem 14
+(*) Duplicate the elements of a list.
+
+Example in Haskell:
+```haskell
+> dupli [1, 2, 3]
+[1,1,2,2,3,3]
+```
+
+
+##Problem 15
+(**) Replicate the elements of a list a given number of times.
+
+Example in Haskell:
+```haskell
+> repli "abc" 3
+"aaabbbccc"
+```
+
+
+##Problem 16
+(**) Drop every N'th element from a list.
+
+Example in Haskell:
+```haskell
+*Main> dropEvery "abcdefghik" 3
+"abdeghk"
+```
+
+
+##Problem 17
+(*) Split a list into two parts; the length of the first part is given.
+
+Do not use any predefined predicates.
+
+Example in Haskell:
+```haskell
+*Main> split "abcdefghik" 3
+("abc", "defghik")
+```
+
+
+##Problem 18
+(**) Extract a slice from a list.
+
+Given two indices, i and k, the slice is the list containing the elements between the i'th and k'th element of the original list (both limits included). Start counting the elements with 1.
+
+Example in Haskell:
+```haskell
+*Main> slice ['a','b','c','d','e','f','g','h','i','k'] 3 7
+"cdefg"
+```
+
+
+##Problem 19
+(**) Rotate a list N places to the left.
+
+Hint: Use the predefined functions length and (++).
+
+Examples in Haskell:
+```haskell
+*Main> rotate ['a','b','c','d','e','f','g','h'] 3
+"defghabc"
+ 
+*Main> rotate ['a','b','c','d','e','f','g','h'] (-2)
+"ghabcdef"
+```
+
+
+##Problem 20
+(*) Remove the K'th element from a list.
+
+Example in Haskell:
+```haskell
+*Main> removeAt 2 "abcd"
+('b',"acd")
 ```
 
 ##Problem 21
@@ -207,15 +322,11 @@ P27> group [2,3,4] ["aldo","beat","carla","david","evi","flip","gary","hugo","id
 ```
 
 
-8 Problem 28
+##Problem 28
 Sorting a list of lists according to length of sublists
 
 a) We suppose that a list contains elements that are lists themselves. The objective is to sort the elements of this list according to their length. E.g. short lists first, longer lists later, or vice versa.
 
-Example:
-
-* (lsort '((a b c) (d e) (f g h) (d e) (i j k l) (m n) (o)))
-((O) (D E) (D E) (M N) (A B C) (F G H) (I J K L))
 Example in Haskell:
 ```haskell
 Prelude>lsort ["abc","de","fgh","de","ijkl","mn","o"]
@@ -223,10 +334,6 @@ Prelude>["o","de","de","mn","abc","fgh","ijkl"]
 ```
 b) Again, we suppose that a list contains elements that are lists themselves. But this time the objective is to sort the elements of this list according to their length frequency; i.e., in the default, where sorting is done ascendingly, lists with rare lengths are placed first, others with a more frequent length come later.
 
-Example:
-
-* (lfsort '((a b c) (d e) (f g h) (d e) (i j k l) (m n) (o)))
-((i j k l) (o) (a b c) (f g h) (d e) (d e) (m n))
 Example in Haskell:
 ```haskell
 lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"]
@@ -243,7 +350,6 @@ Example in Haskell:
 P31> isPrime 7
 True
 ```
-
 
 ##Problem 32
 (**) Determine the greatest common divisor of two positive integer numbers. Use Euclid's algorithm.
@@ -268,55 +374,42 @@ True
 ```
 
 
-5 Problem 34
+##Problem 34
 (**) Calculate Euler's totient function phi(m).
 
 Euler's so-called totient function phi(m) is defined as the number of positive integers r (1 <= r < m) that are coprime to m.
 
 Example: m = 10: r = 1,3,7,9; thus phi(m) = 4. Note the special case: phi(1) = 1.
 
-Example:
-
-* (totient-phi 10)
-4
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 * totient 10
 4
 ```
 
 
-6 Problem 35
+##Problem 35
 (**) Determine the prime factors of a given positive integer. Construct a flat list containing the prime factors in ascending order.
 
-Example:
-
-* (prime-factors 315)
-(3 3 5 7)
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > primeFactors 315
 [3, 3, 5, 7]
 ```
 
-
-7 Problem 36
+##Problem 36
 (**) Determine the prime factors of a given positive integer.
 
 Construct a list containing the prime factors and their multiplicity.
 
-Example:
-
-* (prime-factors-mult 315)
-((3 2) (5 1) (7 1))
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Main> prime_factors_mult 315
 [(3,2),(5,1),(7,1)]
 ```
 
 
-8 Problem 37
+##Problem 37
 (**) Calculate Euler's totient function phi(m) (improved).
 
 See problem 34 for the definition of Euler's totient function. If the list of the prime factors of a number m is known in the form of problem 36 then the function phi(m) can be efficiently calculated as follows: Let ((p1 m1) (p2 m2) (p3 m3) ...) be the list of prime factors (and their multiplicities) of a given number m. Then phi(m) can be calculated with the following formula:
@@ -326,88 +419,60 @@ phi(m) = (p1 - 1) * p1 ** (m1 - 1) *
          (p3 - 1) * p3 ** (m3 - 1) * ...
 Note that a ** b stands for the b'th power of a.
 
-```
-
-9 Problem 38
+##Problem 38
 (*) Compare the two methods of calculating Euler's totient function.
 
-Use the ``` of problems 34 and 37 to compare the algorithms. Take the number of reductions as a measure for efficiency. Try to calculate phi(10090) as an example.
+Use the solitions of problems 34 and 37 to compare the algorithms. Take the number of reductions as a measure for efficiency. Try to calculate phi(10090) as an example.
 
 (no solution required)
 
 
-10 Problem 39
+##Problem 39
 (*) A list of prime numbers.
 
 Given a range of integers by its lower and upper limit, construct a list of all prime numbers in that range.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 P29> primesR 10 20
 [11,13,17,19]
 ```
 
 
-11 Problem 40
+##Problem 40
 (**) Goldbach's conjecture.
 
 Goldbach's conjecture says that every positive even number greater than 2 is the sum of two prime numbers. Example: 28 = 5 + 23. It is one of the most famous facts in number theory that has not been proved to be correct in the general case. It has been numerically confirmed up to very large numbers (much larger than we can go with our Prolog system). Write a predicate to find the two prime numbers that sum up to a given even integer.
 
-Example:
-
-* (goldbach 28)
-(5 23)
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *goldbach 28
 (5, 23)
 ```
 
-
-12 Problem 41
+##Problem 41
 (**) Given a range of integers by its lower and upper limit, print a list of all even numbers and their Goldbach composition.
 
 In most cases, if an even number is written as the sum of two prime numbers, one of them is very small. Very rarely, the primes are both bigger than say 50. Try to find out how many such cases there are in the range 2..3000.
 
-Example:
-
-* (goldbach-list 9 20)
-10 = 3 + 7
-12 = 5 + 7
-14 = 3 + 11
-16 = 3 + 13
-18 = 5 + 13
-20 = 3 + 17
-* (goldbach-list 1 2000 50)
-992 = 73 + 919
-1382 = 61 + 1321
-1856 = 67 + 1789
-1928 = 61 + 1867
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Exercises> goldbachList 9 20
 [(3,7),(5,7),(3,11),(3,13),(5,13),(3,17)]
 *Exercises> goldbachList' 4 2000 50
 [(73,919),(61,1321),(67,1789),(61,1867)]
+```
 
-
- Logic and Codes
-2 Problem 46
+#Logic and Codes
+##Problem 46
 (**) Define predicates and/2, or/2, nand/2, nor/2, xor/2, impl/2 and equ/2 (for logical equivalence) which succeed or fail according to the result of their respective operations; e.g. and(A,B) will succeed, if and only if both A and B succeed.
 
 A logical expression in two variables can then be written as in the following example: and(or(A,B),nand(A,B)).
 
 Now, write a predicate table/3 which prints the truth table of a given logical expression in two variables.
 
-Example:
-
-(table A B (and A (or A B)))
-true true true
-true fail true
-fail true fail
-fail fail fail
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > table (\a b -> (and' a (or' a b)))
 True True True
 True False True
@@ -415,20 +480,13 @@ False True False
 False False False
 ```
 
-3 Problem 47
+##Problem 47
 (*) Truth tables for logical expressions (2).
 
 Continue problem P46 by defining and/2, or/2, etc as being operators. This allows to write the logical expression in the more natural way, as in the example: A and (A or not B). Define operator precedence as usual; i.e. as in Java.
 
-Example:
-
-* (table A B (A and (A or not B)))
-true true true
-true fail true
-fail true fail
-fail fail fail
-Example in Haskell: ```haskell
-
+Example in Haskell: 
+```haskell
 > table2 (\a b -> a `and'` (a `or'` not b))
 True True True
 True False True
@@ -436,24 +494,13 @@ False True False
 False False False
 ```
 
-4 Problem 48
+##Problem 48
 (**) Truth tables for logical expressions (3).
 
 Generalize problem P47 in such a way that the logical expression may contain any number of logical variables. Define table/2 in a way that table(List,Expr) prints the truth table for the expression Expr, which contains the logical variables enumerated in List.
 
-Example:
-
-* (table (A,B,C) (A and (B or C) equ A and B or A and C))
-true true true true
-true true fail true
-true fail true true
-true fail fail true
-fail true true true
-fail true fail true
-fail fail true true
-fail fail fail true
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > tablen 3 (\[a,b,c] -> a `and'` (b `or'` c) `equ'` a `and'` b `or'` a `and'` c)
 -- infixl 3 `equ'`
 True  True  True  True
@@ -476,7 +523,7 @@ False False True  False
 False False False False
 ```
 
-5 Problem 49
+##Problem 49
 (**) Gray codes.
 
 An n-bit Gray code is a sequence of n-bit strings constructed according to certain rules. For example,
@@ -489,27 +536,27 @@ Find out the construction rules and write a predicate with the following specifi
 % gray(N,C) :- C is the N-bit Gray code
 Can you apply the method of "result caching" in order to make the predicate more efficient, when it is to be used repeatedly?
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 P49> gray 3
 ["000","001","011","010","110","111","101","100"]
 ```
 
 
-6 Problem 50
+##Problem 50
 (***) Huffman codes.
 
 We suppose a set of symbols with their frequencies, given as a list of fr(S,F) terms. Example: [fr(a,45),fr(b,13),fr(c,12),fr(d,16),fr(e,9),fr(f,5)]. Our objective is to construct a list hc(S,C) terms, where C is the Huffman code word for the symbol S. In our example, the result could be Hs = [hc(a,'0'), hc(b,'101'), hc(c,'100'), hc(d,'111'), hc(e,'1101'), hc(f,'1100')] [hc(a,'01'),...etc.]. The task shall be performed by the predicate huffman/2 defined as follows:
 
 % huffman(Fs,Hs) :- Hs is the Huffman code table for the frequency table Fs
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Exercises> huffman [('a',45),('b',13),('c',12),('d',16),('e',9),('f',5)]
 [('a',"0"),('b',"101"),('c',"100"),('d',"111"),('e',"1101"),('f',"1100")]
 ```
 
 
- Binary trees
+#Binary trees
 A binary tree is either empty or it is composed of a root element and two successors, which are binary trees themselves.
 
 p67.gif
@@ -548,36 +595,20 @@ tree3 = Empty
 -- A tree of integers
 tree4 = Branch 1 (Branch 2 Empty (Branch 4 Empty Empty))
                  (Branch 2 Empty Empty)
-2 Problem 54A
+##Problem 54A
 (*) Check whether a given term represents a binary tree
-
-In Prolog or Lisp, one writes a predicate to do this.
-
-Example in Lisp:
-
-* (istree (a (b nil nil) nil))
-T
-* (istree (a (b nil nil)))
-NIL
-Non-solution:
 
 Haskell's type system ensures that all terms of type Tree a are binary trees: it is just not possible to construct an invalid tree with this type. Hence, it is redundant to introduce a predicate to check this property: it would always return True.
 
-3 Problem 55
+##Problem 55
 (**) Construct completely balanced binary trees
 
 In a completely balanced binary tree, the following property holds for every node: The number of nodes in its left subtree and the number of nodes in its right subtree are almost equal, which means their difference is not greater than one.
 
-Write a function cbal-tree to construct completely balanced binary trees for a given number of nodes. The predicate should generate all ``` via backtracking. Put the letter 'x' as information into all nodes of the tree.
+Write a function cbal-tree to construct completely balanced binary trees for a given number of nodes. The predicate should generate all solutions via backtracking. Put the letter 'x' as information into all nodes of the tree.
 
-Example:
-
-* cbal-tree(4,T).
-T = t(x, t(x, nil, nil), t(x, nil, t(x, nil, nil))) ;
-T = t(x, t(x, nil, nil), t(x, t(x, nil, nil), nil)) ;
-etc......No
 Example in Haskell, whitespace and "comment diagrams" added for clarity and exposition:
-
+```haskell
 *Main> cbalTree 4
 [
 -- permutation 1
@@ -622,14 +653,13 @@ Branch 'x' (Branch 'x' (Branch 'x' Empty Empty)
 ]
 ```
 
-
-4 Problem 56
+##Problem 56
 (**) Symmetric binary trees
 
 Let us call a binary tree symmetric if you can draw a vertical line through the root node and then the right subtree is the mirror image of the left subtree. Write a predicate symmetric/1 to check whether a given binary tree is symmetric. Hint: Write a predicate mirror/2 first to check whether one tree is the mirror image of another. We are only interested in the structure, not in the contents of the nodes.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Main> symmetric (Branch 'x' (Branch 'x' Empty Empty) Empty)
 False
 *Main> symmetric (Branch 'x' (Branch 'x' Empty Empty) (Branch 'x' Empty Empty))
@@ -637,25 +667,13 @@ True
 ```
 
 
-5 Problem 57
+##Problem 57
 (**) Binary search trees (dictionaries)
 
 Use the predicate add/3, developed in chapter 4 of the course, to write a predicate to construct a binary search tree from a list of integer numbers.
 
-Example:
-
-* construct([3,2,5,7,1],T).
-T = t(3, t(2, t(1, nil, nil), nil), t(5, nil, t(7, nil, nil)))
-Then use this predicate to test the solution of the problem P56.
-
-Example:
-
-* test-symmetric([5,3,18,1,4,12,21]).
-Yes
-* test-symmetric([3,2,5,7,4]).
-No
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Main> construct [3, 2, 5, 7, 1]
 Branch 3 (Branch 2 (Branch 1 Empty Empty) Empty) (Branch 5 Empty (Branch 7 Empty Empty))
 *Main> symmetric . construct $ [5, 3, 18, 1, 4, 12, 21]
@@ -665,37 +683,27 @@ True
 ```
 
 
-6 Problem 58
+##Problem 58
 (**) Generate-and-test paradigm
 
 Apply the generate-and-test paradigm to construct all symmetric, completely balanced binary trees with a given number of nodes.
 
-Example:
-
-* sym-cbal-trees(5,Ts).
-Ts = [t(x, t(x, nil, t(x, nil, nil)), t(x, t(x, nil, nil), nil)), t(x, t(x, t(x, nil, nil), nil), t(x, nil, t(x, nil, nil)))] 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Main> symCbalTrees 5
 [Branch 'x' (Branch 'x' Empty (Branch 'x' Empty Empty)) (Branch 'x' (Branch 'x' Empty Empty) Empty),Branch 'x' (Branch 'x' (Branch 'x' Empty Empty) Empty) (Branch 'x' Empty (Branch 'x' Empty Empty))]
 ```
 
 
-7 Problem 59
+##Problem 59
 (**) Construct height-balanced binary trees
 
 In a height-balanced binary tree, the following property holds for every node: The height of its left subtree and the height of its right subtree are almost equal, which means their difference is not greater than one.
 
 Construct a list of all height-balanced binary trees with the given element and the given maximum height.
 
-Example:
-
-?- hbal_tree(3,T).
-T = t(x, t(x, t(x, nil, nil), t(x, nil, nil)), t(x, t(x, nil, nil), t(x, nil, nil))) ;
-T = t(x, t(x, t(x, nil, nil), t(x, nil, nil)), t(x, t(x, nil, nil), nil)) ;
-etc......No
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Main> take 4 $ hbalTree 'x' 3
 [Branch 'x' (Branch 'x' Empty Empty) (Branch 'x' Empty (Branch 'x' Empty Empty)),
  Branch 'x' (Branch 'x' Empty Empty) (Branch 'x' (Branch 'x' Empty Empty) Empty),
@@ -703,7 +711,7 @@ Example in Haskell: ```haskell
  Branch 'x' (Branch 'x' Empty (Branch 'x' Empty Empty)) (Branch 'x' Empty Empty)]
 ```
 
-8 Problem 60
+##Problem 60
 (**) Construct height-balanced binary trees with a given number of nodes
 
 Consider a height-balanced binary tree of height H. What is the maximum number of nodes it can contain?
@@ -711,12 +719,8 @@ Consider a height-balanced binary tree of height H. What is the maximum number o
 Clearly, MaxN = 2**H - 1. However, what is the minimum number MinN? This question is more difficult. Try to find a recursive statement and turn it into a function minNodes that returns the minimum number of nodes in a height-balanced binary tree of height H. On the other hand, we might ask: what is the maximum height H a height-balanced binary tree with N nodes can have? Write a function maxHeight that computes this.
 Now, we can attack the main problem: construct all the height-balanced binary trees with a given number of nodes. Find out how many height-balanced trees exist for N = 15.
 
-Example in Prolog:
-
-?- count_hbal_trees(15,C).
-C = 1553
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Main> length $ hbalTreeNodes 'x' 15
 1553
 *Main> map (hbalTreeNodes 'x') [0..3]
@@ -727,71 +731,60 @@ Example in Haskell: ```haskell
 ```
 
 
-Binary trees
+#Binary trees
 As defined in problem 54A.
 
 An example tree:
 
 tree4 = Branch 1 (Branch 2 Empty (Branch 4 Empty Empty))
                  (Branch 2 Empty Empty)
-2 Problem 61
+
+##Problem 61
 Count the leaves of a binary tree
 
 A leaf is a node with no successors. Write a predicate count_leaves/2 to count them.
 
-Example:
-
-% count_leaves(T,N) :- the binary tree T has N leaves
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > countLeaves tree4
 2
 ```
 
-3 Problem 61A
+##Problem 61A
 Collect the leaves of a binary tree in a list
 
 A leaf is a node with no successors. Write a predicate leaves/2 to collect them in a list.
 
-Example:
-
-% leaves(T,S) :- S is the list of all leaves of the binary tree T
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > leaves tree4
 [4,2]
 ```
 
-4 Problem 62
+##Problem 62
 Collect the internal nodes of a binary tree in a list
 
 An internal node of a binary tree has either one or two non-empty successors. Write a predicate internals/2 to collect them in a list.
 
-Example:
-
-% internals(T,S) :- S is the list of internal nodes of the binary tree T.
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude>internals tree4
 Prelude>[1,2]
 ```
 
 
-5 Problem 62B
+##Problem 62B
 Collect the nodes at a given level in a list
 
 A node of a binary tree is at level N if the path from the root to the node has length N-1. The root node is at level 1. Write a predicate atlevel/3 to collect all nodes at a given level in a list.
 
-Example:
-
-% atlevel(T,L,S) :- S is the list of nodes of the binary tree T at level L
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude>atLevel tree4 2
 Prelude>[2,2]
 ```
 
-6 Problem 63
+##Problem 63
 Construct a complete binary tree
 
 A complete binary tree with height H is defined as follows:
@@ -804,11 +797,8 @@ We can assign an address number to each node in a complete binary tree by enumer
 
 Write a predicate complete_binary_tree/2.
 
-Example:
-
-% complete_binary_tree(N,T) :- T is a complete binary tree with N nodes.
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Main> completeBinaryTree 4
 Branch 'x' (Branch 'x' (Branch 'x' Empty Empty) Empty) (Branch 'x' Empty Empty)
  
@@ -816,7 +806,7 @@ Main> isCompleteBinaryTree $ Branch 'x' (Branch 'x' Empty Empty) (Branch 'x' Emp
 True
 ```
 
-7 Problem 64
+##Problem 64
 Given a binary tree as the usual Prolog term t(X,L,R) (or nil). As a preparation for drawing the tree, a layout algorithm is required to determine the position of each node in a rectangular grid. Several layout methods are conceivable, one of them is shown in the illustration below:
 
 p64.gif
@@ -829,38 +819,14 @@ Write a function to annotate each node of the tree with a position, where (1,1) 
 
 Here is the example tree from the above illustration:
 
-tree64 = Branch 'n'
-                (Branch 'k'
-                        (Branch 'c'
-                                (Branch 'a' Empty Empty)
-                                (Branch 'h'
-                                        (Branch 'g'
-                                                (Branch 'e' Empty Empty)
-                                                Empty
-                                        )
-                                        Empty
-                                )
-                        )
-                        (Branch 'm' Empty Empty)
-                )
-                (Branch 'u'
-                        (Branch 'p'
-                                Empty
-                                (Branch 's'
-                                        (Branch 'q' Empty Empty)
-                                        Empty
-                                )
-                        )
-                        Empty
-                )
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > layout tree64
 Branch ('n',(8,1)) (Branch ('k',(6,2)) (Branch ('c',(2,3)) ...
 ```
 
 
-8 Problem 65
+##Problem 65
 An alternative layout method is depicted in the illustration below:
 
 p65.gif
@@ -871,32 +837,14 @@ Use the same conventions as in problem P64 and test your function in an appropri
 
 Here is the example tree from the above illustration:
 
-tree65 = Branch 'n'
-                (Branch 'k'
-                        (Branch 'c'
-                                (Branch 'a' Empty Empty)
-                                (Branch 'e'
-                                        (Branch 'd' Empty Empty)
-                                        (Branch 'g' Empty Empty)
-                                )
-                        )
-                        (Branch 'm' Empty Empty)
-                )
-                (Branch 'u'
-                        (Branch 'p'
-                                Empty
-                                (Branch 'q' Empty Empty)
-                        )
-                        Empty
-                )
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > layout tree65
 Branch ('n',(15,1)) (Branch ('k',(7,2)) (Branch ('c',(3,3)) ...
 ```
 
 
-9 Problem 66
+##Problem 66
 Yet another layout strategy is shown in the illustration below:
 
 p66.gif
@@ -907,14 +855,14 @@ Use the same conventions as in problem P64 and P65 and test your predicate in an
 
 Which layout do you like most?
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > layout tree65
 Branch ('n',(5,1)) (Branch ('k',(3,2)) (Branch ('c',(2,3)) ...
 ```
 
 
-10 Problem 67A
+##Problem 67A
 A string representation of binary trees
 
 Somebody represents binary trees as strings of the following type:
@@ -922,14 +870,8 @@ Somebody represents binary trees as strings of the following type:
 a(b(d,e),c(,f(g,)))
 a) Write a Prolog predicate which generates this string representation, if the tree is given as usual (as nil or t(X,L,R) term). Then write a predicate which does this inverse; i.e. given the string representation, construct the tree in the usual form. Finally, combine the two predicates in a single predicate tree_string/2 which can be used in both directions.
 
-Example in Prolog
-
-?- tree_to_string(t(x,t(y,nil,nil),t(a,nil,t(b,nil,nil))),S).
-S = 'x(y,a(,b))'
-?- string_to_tree('x(y,a(,b))',T).
-T = t(x, t(y, nil, nil), t(a, nil, t(b, nil, nil)))
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Main> stringToTree "x(y,a(,b))" >>= print
 Branch 'x' (Branch 'y' Empty Empty) (Branch 'a' Empty (Branch 'b' Empty Empty))
 Main> let t = cbtFromList ['a'..'z'] in stringToTree (treeToString t) >>= print . (== t)
@@ -937,7 +879,7 @@ True
 ```
 
 
-11 Problem 68
+##Problem 68
 Preorder and inorder sequences of binary trees. We consider binary trees with nodes that are identified by single lower-case letters, as in the example of problem P67.
 
 a) Write predicates preorder/2 and inorder/2 that construct the preorder and inorder sequence of a given binary tree, respectively. The results should be atoms, e.g. 'abdecfg' for the preorder sequence of the example in problem P67.
@@ -946,8 +888,8 @@ b) Can you use preorder/2 from problem part a) in the reverse direction; i.e. gi
 
 c) If both the preorder sequence and the inorder sequence of the nodes of a binary tree are given, then the tree is determined unambiguously. Write a predicate pre_in_tree/3 that does the job.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Main> let { Just t = stringToTree "a(b(d,e),c(,f(g,)))" ;
             po = treeToPreorder t ;
             io = treeToInorder t } in preInTree po io >>= print
@@ -955,13 +897,13 @@ Branch 'a' (Branch 'b' (Branch 'd' Empty Empty) (Branch 'e' Empty Empty)) (Branc
 ```
 
 
-12 Problem 69
+##Problem 69
 Dotstring representation of binary trees.
 
 We consider again binary trees with nodes that are identified by single lower-case letters, as in the example of problem P67. Such a tree can be represented by the preorder sequence of its nodes in which dots (.) are inserted where an empty subtree (nil) is encountered during the tree traversal. For example, the tree shown in problem P67 is represented as 'abd..e..c.fg...'. First, try to establish a syntax (BNF or syntax diagrams) and then write a predicate tree_dotstring/2 which does the conversion in both directions. Use difference lists.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > fst (ds2tree example)
 Branch 'a' (Branch 'b' (Branch 'd' Empty Empty) (Branch 'e' Empty Empty)) (Branch 'c' Empty (Branch 'f' (Branch 'g' Empty Empty) Empty))
  
@@ -969,26 +911,23 @@ Branch 'a' (Branch 'b' (Branch 'd' Empty Empty) (Branch 'e' Empty Empty)) (Branc
 "xy..z0..."
 ```
 
- Multiway Trees
+#Multiway Trees
 A multiway tree is composed of a root element and a (possibly empty) set of successors which are multiway trees themselves. A multiway tree is never empty. The set of successor trees is sometimes called a forest.
 
 p70.gif
 
-2 Problem 70B
+##Problem 70B
 (*) Check whether a given term represents a multiway tree.
 
 In Prolog or Lisp, one writes a predicate to check this.
 
-Example in Prolog:
-
-?- istree(t(a,[t(f,[t(g,[])]),t(c,[]),t(b,[t(d,[]),t(e,[])])])).
-Yes
 In Haskell, we define multiway trees as a datatype, as in the module Data.Tree:
 
-data Tree a = Node a [Tree a]
-        deriving (Eq, Show)
+```haskell
+data Tree a = Node a [Tree a] deriving (Eq, Show)
+```
 Some example trees:
-
+```haskell
 tree1 = Node 'a' []
  
 tree2 = Node 'a' [Node 'b' []]
@@ -1002,20 +941,21 @@ tree5 = Node 'a' [
                 Node 'c' [],
                 Node 'b' [Node 'd' [], Node 'e' []]
                 ]
+```
 The last is the tree illustrated above.
 
 As in problem 54A, all members of this type are multiway trees; there is no use for a predicate to test them.
 
-3 Problem 70C
+##Problem 70C
 (*) Count the nodes of a multiway tree.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Tree> nnodes tree2
 2
 ```
 
-4 Problem 70
+##Problem 70
 (**) Tree construction from a node string.
 
 We suppose that the nodes of a multiway tree contain single characters. In the depth-first order sequence of its nodes, a special character ^ has been inserted whenever, during the tree traversal, the move is a backtrack to the previous level.
@@ -1026,8 +966,8 @@ p70.gif
 
 Define the syntax of the string and write a predicate tree(String,Tree) to construct the Tree when the String is given. Make your predicate work in both directions.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Tree> stringToTree "afg^^c^bd^e^^^"
 Node 'a' [Node 'f' [Node 'g' []],Node 'c' [],Node 'b' [Node 'd' [],Node 'e' []]]
  
@@ -1035,13 +975,13 @@ Tree> treeToString (Node 'a' [Node 'f' [Node 'g' []],Node 'c' [],Node 'b' [Node 
 "afg^^c^bd^e^^^"
 ```
 
-5 Problem 71
+##Problem 71
 (*) Determine the internal path length of a tree.
 
 We define the internal path length of a multiway tree as the total sum of the path lengths from the root to all nodes of the tree. By this definition, tree5 has an internal path length of 9.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Tree> ipl tree5
 9
 Tree> ipl tree4
@@ -1049,19 +989,19 @@ Tree> ipl tree4
 ```
 
 
-6 Problem 72
+##Problem 72
 (*) Construct the bottom-up order sequence of the tree nodes.
 
 Write a predicate bottom_up(Tree,Seq) which constructs the bottom-up sequence of the nodes of the multiway tree Tree.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Tree> bottom_up tree5
 "gfcdeba"
 ```
 
 
-7 Problem 73
+##Problem 73
 (**) Lisp-like tree representation.
 
 There is a particular notation for multiway trees in Lisp. Lisp is a prominent functional programming language, which is used primarily for artificial intelligence problems. As such it is one of the main competitors of Prolog. In Lisp almost everything is a list, just as in Prolog everything is a term.
@@ -1074,8 +1014,8 @@ Note that in the "lispy" notation a node with successors (children) in the tree 
 
 (The Prolog example given is incorrect.)
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Tree> display lisp tree1
 "a"
 Tree> display lisp tree2
@@ -1086,11 +1026,11 @@ Tree> display lisp tree4
 "(b d e)"
 Tree> display lisp tree5
 "(a (f g) c (b d e))"
+```
 As a second, even more interesting exercise try to rewrite tree_ltl/2 in a way that the inverse conversion is also possible.
 
-```
 
-Graphs
+#Graphs
 A graph is defined as a set of nodes and a set of edges, where each edge is a pair of nodes.
 
 graph1.gif
@@ -1118,12 +1058,12 @@ graph2.gif
 
 When the edges are directed we call them arcs. These are represented by ordered pairs. Such a graph is called directed graph. To represent a directed graph, the forms discussed above are slightly modified. The example graph above is represented as follows:
 
-Arc-clause form
+###Arc-clause form
 
 arc(s,u).
 arc(u,r).
 ...
-Graph-term form
+###Graph-term form
 
 digraph([r,s,t,u,v],[a(s,r),a(s,u),a(u,r),a(u,s),a(v,u)])
 Adjacency-list form
@@ -1131,107 +1071,107 @@ Adjacency-list form
 [n(r,[]),n(s,[r,u]),n(t,[]),n(u,[r]),n(v,[u])]
 Note that the adjacency-list does not have the information on whether it is a graph or a digraph.
 
-Human-friendly form
+###Human-friendly form
 
 [s > r, t, u > r, s > u, u > s, v > u] 
 Finally, graphs and digraphs may have additional information attached to nodes and edges (arcs). For the nodes, this is no problem, as we can easily replace the single character identifiers with arbitrary compound terms, such as city('London',4711). On the other hand, for edges we have to extend our notation. Graphs with additional information attached to edges are called labelled graphs.
 
 graph3.gif
 
-Arc-clause form
+###Arc-clause form
 
 arc(m,q,7).
 arc(p,q,9).
 arc(p,m,5).
-Graph-term form
+###Graph-term form
 
 digraph([k,m,p,q],[a(m,p,7),a(p,m,5),a(p,q,9)])
-Adjacency-list form
+###Adjacency-list form
 
 [n(k,[]),n(m,[q/7]),n(p,[m/5,q/9]),n(q,[])]
 Notice how the edge information has been packed into a term with functor '/' and arity 2, together with the corresponding node.
 
-Human-friendly form
+###Human-friendly form
 
 [p>q/9, m>q/7, k, p>m/5]
 The notation for labelled graphs can also be used for so-called multi-graphs, where more than one edge (or arc) are allowed between two given nodes.
 
-2 Problem 80
+##Problem 80
 (***) Conversions
 
 Write predicates to convert between the different graph representations. With these predicates, all representations are equivalent; i.e. for the following problems you can always pick freely the most convenient form. The reason this problem is rated (***) is not because it's particularly difficult, but because it's a lot of work to deal with all the special cases.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 graphToAdj Graph ['b','c','d','f','g','h','k'] [('b','c'),('b','f'),('c','f'),('f','k'),('g','h')]
 Adj [('b', "cf"), ('c', "bf"), ('d', ""), ('f', "bck"), ('g', "h"), ('h', "g"), ('k', "f")]
 ```
 
-3 Problem 81
+##Problem 81
 (**) Path from one node to another one
 
 Write a function that, given two nodes a and b in a graph, returns all the acyclic paths from a to b.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 paths 1 4 [(1,2),(2,3),(1,3),(3,4),(4,2),(5,6)]
 [[1,2,3,4],[1,3,4]]
 paths 2 6 [(1,2),(2,3),(1,3),(3,4),(4,2),(5,6)]
 []
 ```
 
-4 Problem 82
+##Problem 82
 (*) Cycle from a given node
 
 Write a predicate cycle(G,A,P) to find a closed path (cycle) P starting at a given node A in the graph G. The predicate should return all cycles via backtracking.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 graph> cycle 2 [(1,2),(2,3),(1,3),(3,4),(4,2),(5,6)]
 [[2,3,4,2]]
 graph> cycle 1 [(1,2),(2,3),(1,3),(3,4),(4,2),(5,6)]
 []
 ```
 
-5 Problem 83
+##Problem 83
 (**) Construct all spanning trees
 
 Write a predicate s_tree(Graph,Tree) to construct (by backtracking) all spanning trees of a given graph. With this predicate, find out how many spanning trees there are for the graph depicted to the left. The data of this example graph can be found in the file p83.dat. When you have a correct solution for the s_tree/2 predicate, use it to define two other useful predicates: is_tree(Graph) and is_connected(Graph). Both are five-minutes tasks!
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 length $ spantree k4
 16
 ```
 
-6 Problem 84
+##Problem 84
 (**) Construct the minimal spanning tree
 
 Write a predicate ms_tree(Graph,Tree,Sum) to construct the minimal spanning tree of a given labelled graph. Hint: Use the algorithm of Prim. A small modification of the solution of P83 does the trick. The data of the example graph to the right can be found in the file p84.dat.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 prim [1,2,3,4,5] [(1,2,12),(1,3,34),(1,5,78),(2,4,55),(2,5,32),(3,4,61),(3,5,44),(4,5,93)]
 [(1,2,12),(1,3,34),(2,4,55),(2,5,32)]
 ```
 
 
-7 Problem 85
+##Problem 85
 (**) Graph isomorphism
 
 Two graphs G1(N1,E1) and G2(N2,E2) are isomorphic if there is a bijection f: N1 -> N2 such that for any nodes X,Y of N1, X and Y are adjacent if and only if f(X) and f(Y) are adjacent.
 
 Write a predicate that determines whether two graphs are isomorphic. Hint: Use an open-ended list to represent the function f.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 graphG1 = [1,2,3,4,5,6,7,8] [(1,5),(1,6),(1,7),(2,5),(2,6),(2,8),(3,5),(3,7),(3,8),(4,6),(4,7),(4,8)]
 graphH1 = [1,2,3,4,5,6,7,8] [(1,2),(1,4),(1,5),(6,2),(6,5),(6,7),(8,4),(8,5),(8,7),(3,2),(3,4),(3,7)]
 iso graphG1 graphH1
 True
 ```
 
-8 Problem 86
+##Problem 86
 (**) Node degree and graph coloration
 
 a) Write a predicate degree(Graph,Node,Deg) that determines the degree of a given node.
@@ -1240,56 +1180,56 @@ b) Write a predicate that generates a list of all nodes of a graph sorted accord
 
 c) Use Welch-Powell's algorithm to paint the nodes of a graph in such a way that adjacent nodes have different colors.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 kcolor ['a','b','c','d','e','f','g','h','i','j'] [('a','b'),('a','e'),('a','f'),('b','c'),('b','g'),('c','d'),('c','h'),('d','e'),('d','i'),('e','j'),('f','h'),('f','i'),('g','i'),('g','j'),('h','j')]
 [('a',1),('b',2),('c',1),('d',2),('e',3),('f',2),('g',1),('h',3),('i',3),('j',2)]
 ```
 
-9 Problem 87
+##Problem 87
 (**) Depth-first order graph traversal (alternative solution)
 
 Write a predicate that generates a depth-first order graph traversal sequence. The starting point should be specified, and the output should be a list of nodes that are reachable from this starting point (in depth-first order).
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 depthfirst ([1,2,3,4,5,6,7], [(1,2),(2,3),(1,4),(3,4),(5,2),(5,4),(6,7)]) 1
 [1,2,3,4,5]
 ```
 
-10 Problem 88
+##Problem 88
 (**) Connected components (alternative solution)
 
 Write a predicate that splits a graph into its connected components.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 connectedcomponents ([1,2,3,4,5,6,7], [(1,2),(2,3),(1,4),(3,4),(5,2),(5,4),(6,7)])
 [[1,2,3,4,5][6,7]]
 ```
 
-11 Problem 89
+##Problem 89
 (**) Bipartite graphs
 
 Write a predicate that finds out whether a given graph is bipartite.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 bipartite ([1,2,3,4,5],[(1,2),(2,3),(1,4),(3,4),(5,2),(5,4)])
 True
 bipartite ([1,2,3,4,5],[(1,2),(2,3),(1,4),(3,4),(5,2),(5,4),(1,3)])
 False
 
-1 Miscellaneous problems
-2 Problem 90
+#Miscellaneous problems
+##Problem 90
 (**) Eight queens problem
 
 This is a classical problem in computer science. The objective is to place eight queens on a chessboard so that no two queens are attacking each other; i.e., no two queens are in the same row, the same column, or on the same diagonal.
 
 Hint: Represent the positions of the queens as a list of numbers 1..N. Example: [4,2,7,3,6,8,5,1] means that the queen in the first column is in row 4, the queen in the second column is in row 2, etc. Use the generate-and-test paradigm.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > length (queens 8)
 92
 > head (queens 8)
@@ -1297,10 +1237,10 @@ Example in Haskell: ```haskell
 ```
 
 
-3 Problem 91
+##Problem 91
 (**) Knight's tour
 
-Another famous problem is this one: How can a knight jump on an NxN chessboard in such a way that it visits every square exactly once? A set of ``` is given on the The_Knights_Tour page.
+Another famous problem is this one: How can a knight jump on an NxN chessboard in such a way that it visits every square exactly once? A set of solutions is given on the The_Knights_Tour page.
 
 Hints: Represent the squares by pairs of their coordinates of the form X/Y, where both X and Y are integers between 1 and N. (Note that '/' is just a convenient functor, not division!) Define the relation jump(N,X/Y,U/V) to express the fact that a knight can jump from X/Y to U/V on a NxN chessboard. And finally, represent the solution of our problem as a list of N*N knight positions (the knight's tour).
 
@@ -1308,8 +1248,8 @@ There are two variants of this problem:
 
 find a tour ending at a particular square
 find a circular tour, ending a knight's jump from the start (clearly it doesn't matter where you start, so choose (1,1))
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Knights> head $ knightsTo 8 (1,1)
 [(2,7),(3,5),(5,6),(4,8),(3,6),(4,4),(6,5),(4,6),
 (5,4),(7,5),(6,3),(5,5),(4,3),(2,4),(1,6),(2,8),
@@ -1319,7 +1259,7 @@ Knights> head $ knightsTo 8 (1,1)
 (1,4),(2,2),(4,1),(5,3),(7,4),(8,2),(6,1),(4,2),
 (2,1),(1,3),(2,5),(1,7),(3,8),(5,7),(7,8),(8,6),
 (6,7),(8,8),(7,6),(8,4),(7,2),(5,1),(3,2),(1,1)]
-Knights> head $ closedKnights 8  
+Knights> head $ closedKnights 8
 [(1,1),(3,2),(1,3),(2,1),(3,3),(5,4),(6,6),(4,5),
 (2,6),(1,8),(3,7),(5,8),(4,6),(2,5),(4,4),(5,6),
 (6,4),(8,5),(7,7),(6,5),(5,3),(6,1),(4,2),(6,3),
@@ -1331,7 +1271,7 @@ Knights> head $ closedKnights 8
 ```
 
 
-4 Problem 92
+##Problem 92
 (***) Von Koch's conjecture
 
 Several years ago I met a mathematician who was intrigued by a problem for which he didn't know a solution. His name was Von Koch, and I don't know whether the problem has been solved since.
@@ -1346,22 +1286,22 @@ Write a predicate that calculates a numbering scheme for a given tree. What is t
 
 p92b.gif
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > head $ vonKoch [(1,6),(2,6),(3,6),(4,6),(5,6),(5,7),(5,8),(8,9),(5,10),(10,11),(11,12),(11,13),(13,14)]
 [6,7,8,9,3,4,10,11,5,12,2,13,14,1]
 ```
 
 
-5 Problem 93
+##Problem 93
 (***) An arithmetic puzzle
 
 Given a list of integer numbers, find a correct way of inserting arithmetic signs (operators) such that the result is a correct equation. Example: With the list of numbers [2,3,5,7,11] we can form the equations 2-3+5+7 = 11 or 2 = (3*5+7)/11 (and ten others!).
 
 Division should be interpreted as operating on rationals, and division by zero should be avoided.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 P93> mapM_ putStrLn $ puzzle [2,3,5,7,11]
 2 = 3-(5+7-11)
 2 = 3-5-(7-11)
@@ -1373,39 +1313,41 @@ P93> mapM_ putStrLn $ puzzle [2,3,5,7,11]
 2-(3-5-7) = 11
 2-(3-5)+7 = 11
 2-3+5+7 = 11
-The other two ``` alluded to in the problem description are dropped by the Haskell solution as trivial variants:
-
+```
+The other two solutions alluded to in the problem description are dropped by the Haskell solution as trivial variants:
+```haskell
 2 = 3-(5+(7-11))
 2-3+(5+7) = 11
 ```
 
 
-6 Problem 94
+##Problem 94
 (***) Generate K-regular simple graphs with N nodes
 
 In a K-regular graph all nodes have a degree of K; i.e. the number of edges incident in each node is K. How many (non-isomorphic!) 3-regular graphs with 6 nodes are there?
 
 Sample results
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 length $ regular 6 3
 2
+```
 
-1 Miscellaneous problems
-2 Problem 95
+#Miscellaneous problems
+##Problem 95
 (**) English number words
 
 On financial documents, like cheques, numbers must sometimes be written in full words. Example: 175 must be written as one-seven-five. Write a predicate full-words/1 to print (non-negative) integer numbers in full words.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > fullWords 175
 one-seven-five
 ```
 
 
-3 Problem 96
+##Problem 96
 (**) Syntax checker
 
 In a certain programming language (Ada) identifiers are defined by the syntax diagram below.
@@ -1414,21 +1356,18 @@ p96.gif
 
 Transform the syntax diagram into a system of syntax diagrams which do not contain loops; i.e. which are purely recursive. Using these modified diagrams, write a predicate identifier/1 that can check whether or not a given string is a legal identifier.
 
-Example in Prolog:
-
-% identifier(Str) :- Str is a legal identifier 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > identifier "this-is-a-long-identifier"
 True
-> identifier "this-ends-in-"            
+> identifier "this-ends-in-"
 False
 > identifier "two--hyphens" 
 False
 ```
 
 
-4 Problem 97
+##Problem 97
 (**) Sudoku
 
 Sudoku puzzles go like this:
@@ -1454,10 +1393,8 @@ Sudoku puzzles go like this:
         2  4  . | .  .  1 | 5  .  .          2  4  6 | 3  9  1 | 5  7  8
 Every spot in the puzzle belongs to a (horizontal) row and a (vertical) column, as well as to one single 3x3 square (which we call "square" for short). At the beginning, some of the spots carry a single-digit number between 1 and 9. The problem is to fill the missing spots with digits in such a way that every number between 1 and 9 appears exactly once in each row, in each column, and in each square.
 
-```
 
-
-5 Problem 98
+##Problem 98
 (***) Nonograms
 
 Around 1994, a certain kind of puzzle was very popular in England. The "Sunday Telegraph" newspaper wrote: "Nonograms are puzzles from Japan and are currently published each week only in The Sunday Telegraph. Simply use your logic and skill to complete the grid and reveal a picture or diagram." As a Prolog programmer, you are in a better situation: you can have your computer do the work! Just write a little program ;-).
@@ -1479,8 +1416,8 @@ The puzzle goes like this: Essentially, each row and column of a rectangular bit
       
 For the example above, the problem can be stated as the two lists [[3],[2,1],[3,2],[2,2],[6],[1,5],[6],[1],[2]] and [[1,2],[3,1],[1,5],[7,1],[5],[3],[4],[3]] which give the "solid" lengths of the rows and columns, top-to-bottom and left-to-right, respectively. Published puzzles are larger than this example, e.g. 25 x 20, and apparently always have unique ```.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Nonogram> putStr $ nonogram [[3],[2,1],[3,2],[2,2],[6],[1,5],[6],[1],[2]] [[1,2],[3,1],[1,5],[7,1],[5],[3],[4],[3]]
 |_|X|X|X|_|_|_|_| 3
 |X|X|_|X|_|_|_|_| 2 1
@@ -1496,7 +1433,7 @@ Nonogram> putStr $ nonogram [[3],[2,1],[3,2],[2,2],[6],[1,5],[6],[1],[2]] [[1,2]
 ```
 
 
-6 Problem 99
+##Problem 99
 (***) Crossword puzzle
 
 Given an empty (or almost empty) framework of a crossword puzzle and a set of words. The problem is to place the words into the framework.
@@ -1513,8 +1450,8 @@ Hints: (1) The problem is not easy. You will need some time to thoroughly unders
 
 (3) For efficiency reasons it is important, at least for larger puzzles, to sort the words and the sites in a particular order. For this part of the problem, the solution of P28 may be very helpful.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 ALPHA
 ARES
 POPPY
@@ -1530,5 +1467,4 @@ POPPY
 [[((3,1),'A'),((3,2),'L'),((3,3),'P'),((3,4),'H'),((3,5),'A'),((1,3),'P'),((2,3)
 ,'O'),((3,3),'P'),((4,3),'P'),((5,3),'Y'),((3,5),'A'),((4,5),'R'),((5,5),'E'),((
 6,5),'S')]]
-
-
+```
