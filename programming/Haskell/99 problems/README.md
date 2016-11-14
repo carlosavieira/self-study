@@ -367,8 +367,8 @@ Example:
 
 * (coprime 35 64)
 T
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 * coprime 35 64
 True
 ```
