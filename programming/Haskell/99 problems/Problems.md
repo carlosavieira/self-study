@@ -1,78 +1,78 @@
 ##Problem 1
 (*) Find the last element of a list.
 
-Example in Haskell: ```haskell
-
+Example in Haskell: 
+```haskell
 Prelude> myLast [1,2,3,4]
 4
 Prelude> myLast ['x','y','z']
 'z'
-
+```
 
 ##Problem 2
 (*) Find the last but one element of a list.
 
-Example in Haskell: ```haskell
-
+Example in Haskell: 
+```haskell
 Prelude> myButLast [1,2,3,4]
 3
 Prelude> myButLast ['a'..'z']
 'y'
-
+```
 
 ##Problem 3
 (*) Find the K'th element of a list. The first element in the list is number 1.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude> elementAt [1,2,3] 2
 2
 Prelude> elementAt "haskell" 5
 'e'
-
+```
 
 ##Problem 4
 (*) Find the number of elements of a list.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude> myLength [123, 456, 789]
 3
 Prelude> myLength "Hello, world!"
 13
-
+```
 
 ##Problem 5
 (*) Reverse a list.
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude> myReverse "A man, a plan, a canal, panama!"
 "!amanap ,lanac a ,nalp a ,nam A"
 Prelude> myReverse [1,2,3,4]
 [4,3,2,1]
-
+```
 
 ##Problem 6
 (*) Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x).
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 *Main> isPalindrome [1,2,3]
 False
 *Main> isPalindrome "madamimadam"
 True
 *Main> isPalindrome [1,2,4,8,16,8,4,2,1]
 True
-
+```
 
 ##Problem 7
 (**) Flatten a nested list structure.
 
 Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively).
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 We have to define a new data type, because lists in Haskell are homogeneous.
 
  data NestedList a = Elem a | List [NestedList a]
@@ -82,124 +82,99 @@ We have to define a new data type, because lists in Haskell are homogeneous.
 [1,2,3,4,5]
 *Main> flatten (List [])
 []
-
+```
 
 ##Problem 8
 (**) Eliminate consecutive duplicates of list elements.
 
 If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.
 
-Example in Haskell: ```haskell
-
+Example in Haskell: 
+```haskell
 > compress "aaaabccaadeeee"
 "abcade"
-
+```
 
 ##Problem 9
 (**) Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
 
-Example in Haskell: ```haskell
-
-*Main> pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 
-             'a', 'd', 'e', 'e', 'e', 'e']
+Example in Haskell: 
+```haskell
+Main> pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 
+            'a', 'd', 'e', 'e', 'e', 'e']
 ["aaaa","b","cc","aa","d","eeee"]
 ```
 
 ##Problem 10
 (*) Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
 
-Example in Haskell: ```haskell
+Example in Haskell:```haskell
 
 encode "aaaabccaadeeee"
 [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
+```
 
-
-1 Problem 21
+##Problem 21
 Insert an element at a given position into a list.
 
-Example:
-
-* (insert-at 'alfa '(a b c d) 2)
-(A ALFA B C D)
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 P21> insertAt 'X' "abcd" 2
 "aXbcd"
 ```
 
 
-2 Problem 22
+##Problem 22
 Create a list containing all integers within a given range.
 
-Example:
-
-* (range 4 9)
-(4 5 6 7 8 9)
-Example in Haskell: ```haskell
-
+Example in Haskell: 
+```haskell
 Prelude> range 4 9
 [4,5,6,7,8,9]
 ```
 
-3 Problem 23
+##Problem 23
 Extract a given number of randomly selected elements from a list.
 
-Example:
-
-* (rnd-select '(a b c d e f g h) 3)
-(E D A)
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude System.Random>rnd_select "abcdefgh" 3 >>= putStrLn
 eda
 ```
 
-
-4 Problem 24
+##Problem 24
 Lotto: Draw N different random numbers from the set 1..M.
 
-Example:
-
-* (rnd-select 6 49)
-(23 1 17 33 21 37)
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude System.Random>diff_select 6 49
 Prelude System.Random>[23,1,17,33,21,37]
 ```
 
 
-5 Problem 25
+##Problem 25
 Generate a random permutation of the elements of a list.
 
-Example:
-
-* (rnd-permu '(a b c d e f))
-(B A D C E F)
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude System.Random>rnd_permu "abcdef"
 Prelude System.Random>"badcef"
 ```
 
 
-6 Problem 26
+##Problem 26
 (**) Generate the combinations of K distinct objects chosen from the N elements of a list
 
 In how many ways can a committee of 3 be chosen from a group of 12 people? We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial coefficients). For pure mathematicians, this result may be great. But we want to really generate all the possibilities in a list.
 
-Example:
-
-* (combinations 3 '(a b c d e f))
-((A B C) (A B D) (A B E) ... )
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 > combinations 3 "abcdef"
 ["abc","abd","abe",...]
 ```
 
 
-7 Problem 27
+##Problem 27
 Group the elements of a set into disjoint subsets.
 
 a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a function that generates all the possibilities and returns them in a list.
@@ -220,15 +195,15 @@ Note that we do not want permutations of the group members; i.e. ((ALDO BEAT) ..
 
 You may find more about this combinatorial problem in a good book on discrete mathematics under the term "multinomial coefficients".
 
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 P27> group [2,3,4] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]
 [[["aldo","beat"],["carla","david","evi"],["flip","gary","hugo","ida"]],...]
-(altogether 1260 ```)
+(altogether 1260 solutions)
  
 27> group [2,2,5] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]
 [[["aldo","beat"],["carla","david"],["evi","flip","gary","hugo","ida"]],...]
-(altogether 756 ```)
+(altogether 756 solutions)
 ```
 
 
@@ -241,52 +216,45 @@ Example:
 
 * (lsort '((a b c) (d e) (f g h) (d e) (i j k l) (m n) (o)))
 ((O) (D E) (D E) (M N) (A B C) (F G H) (I J K L))
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 Prelude>lsort ["abc","de","fgh","de","ijkl","mn","o"]
 Prelude>["o","de","de","mn","abc","fgh","ijkl"]
+```
 b) Again, we suppose that a list contains elements that are lists themselves. But this time the objective is to sort the elements of this list according to their length frequency; i.e., in the default, where sorting is done ascendingly, lists with rare lengths are placed first, others with a more frequent length come later.
 
 Example:
 
 * (lfsort '((a b c) (d e) (f g h) (d e) (i j k l) (m n) (o)))
 ((i j k l) (o) (a b c) (f g h) (d e) (d e) (m n))
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"]
 ["ijkl","o","abc","fgh","de","de","mn"]
 ```
 
 
-1 Arithmetic
-2 Problem 31
+#Arithmetic
+##Problem 31
 (**) Determine whether a given integer number is prime.
 
-Example:
-
-* (is-prime 7)
-T
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 P31> isPrime 7
 True
 ```
 
 
-3 Problem 32
+##Problem 32
 (**) Determine the greatest common divisor of two positive integer numbers. Use Euclid's algorithm.
 
-Example:
-
-* (gcd 36 63)
-9
-Example in Haskell: ```haskell
-
+Example in Haskell:
+```haskell
 [myGCD 36 63, myGCD (-3) (-6), myGCD (-3) 6]
 [9,3,3]
 ```
 
-4 Problem 33
+##Problem 33
 (*) Determine whether two positive integer numbers are coprime. Two numbers are coprime if their greatest common divisor equals 1.
 
 Example:
