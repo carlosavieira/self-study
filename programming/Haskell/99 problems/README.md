@@ -1,4 +1,5 @@
-# The 99 problems
+# [The 99 problems](https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems)
+
 
 <details><summary>**Questions 1 to 10: Lists**</summary><p>
 ##Problem 1
@@ -1480,3 +1481,5 @@ POPPY
 6,5),'S')]]
 ```
 </p></details>
+
+(Though the problems number from 1 to 99, there are some gaps and some additions marked with letters. There are actually only 88 problems.)
