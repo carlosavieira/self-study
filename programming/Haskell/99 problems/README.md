@@ -1,3 +1,6 @@
+# The 99 problems
+
+<details><summary>**Questions 1 to 10: Lists**</summary><p>
 ##Problem 1
 (*) Find the last element of a list.
 
@@ -113,7 +116,8 @@ Example in Haskell:
 encode "aaaabccaadeeee"
 [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
 ```
-
+</p></details>
+<details><summary>**Questions 11 to 20: Lists II**</summary><p>
 ##Problem 11
 (*) Modified run-length encoding.
 
@@ -228,7 +232,8 @@ Example in Haskell:
 *Main> removeAt 2 "abcd"
 ('b',"acd")
 ```
-
+</p></details>
+<details><summary>**Questions 21 to 28: Lists III**</summary><p>
 ##Problem 21
 Insert an element at a given position into a list.
 
@@ -339,8 +344,8 @@ Example in Haskell:
 lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"]
 ["ijkl","o","abc","fgh","de","de","mn"]
 ```
-
-
+</p></details>
+<details><summary>**Questions 31 to 41: Arithmetic**</summary><p>
 #Arithmetic
 ##Problem 31
 (**) Determine whether a given integer number is prime.
@@ -462,7 +467,8 @@ Example in Haskell:
 *Exercises> goldbachList' 4 2000 50
 [(73,919),(61,1321),(67,1789),(61,1867)]
 ```
-
+</p></details>
+<details><summary>**Questions 46 to 50: Logic and codes**</summary><p>
 #Logic and Codes
 ##Problem 46
 (**) Define predicates and/2, or/2, nand/2, nor/2, xor/2, impl/2 and equ/2 (for logical equivalence) which succeed or fail according to the result of their respective operations; e.g. and(A,B) will succeed, if and only if both A and B succeed.
@@ -554,8 +560,8 @@ Example in Haskell:
 *Exercises> huffman [('a',45),('b',13),('c',12),('d',16),('e',9),('f',5)]
 [('a',"0"),('b',"101"),('c',"100"),('d',"111"),('e',"1101"),('f',"1100")]
 ```
-
-
+</p></details>
+<details><summary>**Questions 54A to 60: Binary trees**</summary><p>
 #Binary trees
 A binary tree is either empty or it is composed of a root element and two successors, which are binary trees themselves.
 
@@ -729,8 +735,8 @@ Example in Haskell:
  [Branch 'x' Empty (Branch 'x' Empty Empty),Branch 'x' (Branch 'x' Empty Empty) Empty],
  [Branch 'x' (Branch 'x' Empty Empty) (Branch 'x' Empty Empty)]]
 ```
-
-
+</p></details>
+<details><summary>**Questions 61 to 69: Binary trees II**</summary><p>
 #Binary trees
 As defined in problem 54A.
 
@@ -910,7 +916,8 @@ Branch 'a' (Branch 'b' (Branch 'd' Empty Empty) (Branch 'e' Empty Empty)) (Branc
 > tree2ds (Branch 'x' (Branch 'y' Empty Empty) (Branch 'z' (Branch '0' Empty Empty) Empty))
 "xy..z0..."
 ```
-
+</p></details>
+<details><summary>**Questions 70B to 73: Multiway trees**</summary><p>
 #Multiway Trees
 A multiway tree is composed of a root element and a (possibly empty) set of successors which are multiway trees themselves. A multiway tree is never empty. The set of successor trees is sometimes called a forest.
 
@@ -1028,6 +1035,10 @@ Tree> display lisp tree5
 "(a (f g) c (b d e))"
 ```
 As a second, even more interesting exercise try to rewrite tree_ltl/2 in a way that the inverse conversion is also possible.
+</p></details>
+<details><summary>**Questions 80 to 89: Graphs**</summary><p>
+
+
 
 
 #Graphs
@@ -1235,8 +1246,8 @@ Example in Haskell:
 > head (queens 8)
 [1,5,8,6,3,7,2,4]
 ```
-
-
+</p></details>
+<details><summary>**Questions 90 to 94: Miscellaneous problems**</summary><p>
 ##Problem 91
 (**) Knight's tour
 
@@ -1333,8 +1344,8 @@ Example in Haskell:
 length $ regular 6 3
 2
 ```
-
-#Miscellaneous problems
+</p></details>
+<details><summary>**Questions 95 to 99: Miscellaneous problems II**</summary><p>
 ##Problem 95
 (**) English number words
 
@@ -1468,3 +1479,4 @@ POPPY
 ,'O'),((3,3),'P'),((4,3),'P'),((5,3),'Y'),((3,5),'A'),((4,5),'R'),((5,5),'E'),((
 6,5),'S')]]
 ```
+</p></details>
