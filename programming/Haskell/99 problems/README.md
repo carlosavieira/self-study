@@ -347,7 +347,6 @@ lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"]
 ```
 </p></details>
 <details><summary>**Questions 31 to 41: Arithmetic**</summary><p>
-#Arithmetic
 ##Problem 31
 (**) Determine whether a given integer number is prime.
 
@@ -470,7 +469,6 @@ Example in Haskell:
 ```
 </p></details>
 <details><summary>**Questions 46 to 50: Logic and codes**</summary><p>
-#Logic and Codes
 ##Problem 46
 (**) Define predicates and/2, or/2, nand/2, nor/2, xor/2, impl/2 and equ/2 (for logical equivalence) which succeed or fail according to the result of their respective operations; e.g. and(A,B) will succeed, if and only if both A and B succeed.
 
@@ -563,7 +561,6 @@ Example in Haskell:
 ```
 </p></details>
 <details><summary>**Questions 54A to 60: Binary trees**</summary><p>
-#Binary trees
 A binary tree is either empty or it is composed of a root element and two successors, which are binary trees themselves.
 
 p67.gif
@@ -738,7 +735,6 @@ Example in Haskell:
 ```
 </p></details>
 <details><summary>**Questions 61 to 69: Binary trees II**</summary><p>
-#Binary trees
 As defined in problem 54A.
 
 An example tree:
@@ -919,7 +915,6 @@ Branch 'a' (Branch 'b' (Branch 'd' Empty Empty) (Branch 'e' Empty Empty)) (Branc
 ```
 </p></details>
 <details><summary>**Questions 70B to 73: Multiway trees**</summary><p>
-#Multiway Trees
 A multiway tree is composed of a root element and a (possibly empty) set of successors which are multiway trees themselves. A multiway tree is never empty. The set of successor trees is sometimes called a forest.
 
 p70.gif
@@ -1038,11 +1033,6 @@ Tree> display lisp tree5
 As a second, even more interesting exercise try to rewrite tree_ltl/2 in a way that the inverse conversion is also possible.
 </p></details>
 <details><summary>**Questions 80 to 89: Graphs**</summary><p>
-
-
-
-
-#Graphs
 A graph is defined as a set of nodes and a set of edges, where each edge is a pair of nodes.
 
 graph1.gif
