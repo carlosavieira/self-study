@@ -2,23 +2,23 @@
 Self study files based on "What every computer science major should know" from matt.might.net
 
 ## Progress
-- [ ] Haskell
-- [ ] Latex
-- [ ] Emacs
+- Haskell
+- Latex
+- Emacs
 
 ### General
 - [ ] Portfolio
 - [ ] Resume
 - [ ] Technical Communication
-- [ ] LaTeX
-- [ ] Emacs
+- [X] LaTeX
+- [X] Emacs
 - [ ] Vim
 
 ###Systems administration
 
 ###Programming Languages
-- [X] C
-- [ ] Haskell
+- [X] ~~C~~
+- [X] Haskell
 - [ ] C++
 - [ ] Assembly
 - [ ] JavaScript
@@ -31,12 +31,12 @@ Self study files based on "What every computer science major should know" from m
 
 ###Discrete mathematics
 
-###Data structures and algorithms
-- [X] hash tables
-- [X] linked lists
-- [X] trees
-- [X] binary search trees
-- [ ] directed and undirected graphs
+###~~Data structures and algorithms~~
+- [X] ~~hash tables~~
+- [X] ~~linked lists~~
+- [X] ~~trees~~
+- [X] ~~binary search trees~~
+- [X] ~~directed and undirected graphs~~
 
 ###Theory
 - [ ] finite-state automata
@@ -112,9 +112,9 @@ Self study files based on "What every computer science major should know" from m
 
 ###Software engineering
 - [ ] SVN
-- [ ] Git
-- [ ] gdb
-- [ ] valgrind
+- [X] Git
+- [X] gdb
+- [X] valgrind
 
 ###Formal methods
 - [ ] theorem prover
